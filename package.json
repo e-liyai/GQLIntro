@@ -1,0 +1,28 @@
+{
+  "name": "GQLIntro",
+  "version": "1.0.0",
+  "description": "Name contests API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node lib/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-liyai/GQLIntro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/e-liyai/GQLIntro/issues"
+  },
+  "homepage": "https://github.com/e-liyai/GQLIntro#readme",
+  "dependencies": {
+    "mongodb": "^2.1.18",
+    "pg": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
