@@ -17,3 +17,5 @@ const RootQueryType = new GraphQLObjectType({
 const ncSchema = new GraphQLSchema({
 	query: RootQueryType
 })
+
+module.exports = ncSchema
