@@ -19,7 +19,7 @@ create table contests (
 	description text,
 	status varchar(10) not null default 'draft' check (status in ('draft', 'published', 'archived')),
 	created_at timestamp not null default current_timestamp,
-	create_by integer references users not null
+	created_by integer references users not null
 );
 
 create table names (
@@ -29,7 +29,7 @@ create table names (
 	normalized_label varchar(255) not null,
 	description text,
 	created_at timestamp not null default current_timestamp,
-	create_by integer references users not null
+	created_by integer references users not null
 );
 
 create table votes (
@@ -37,8 +37,8 @@ create table votes (
 	name_id integer references names not null,
 	up boolean not null,
 	created_at timestamp not null default current_timestamp,
-	create_by integer references users not null,
-	constraint user_can_vote_once_on_a_name unique(name_id, create_by)
+	created_by integer references users not null,
+	constraint user_can_vote_once_on_a_name unique(name_id, created_by)
 );
 
 INSERT INTO "users" ("email","first_name","last_name","api_key")
