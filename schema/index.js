@@ -5,6 +5,7 @@ const {
 	GraphQLNonNull,
 } = require('graphql')
 const MeType = require('./types/me')
+const pgdb = require('../database/pgdb')
 
 const RootQueryType = new GraphQLObjectType({
 	name: 'RootQueryType',
@@ -15,8 +16,9 @@ const RootQueryType = new GraphQLObjectType({
 			args: {
 				key: { type: new GraphQLNonNull(GraphQLString) }
 			},
-			resolve: () => {
+			resolve: (obj, args, ctx) => {
 				// read user info from database
+				return pgdb(ctx.pgPool).getUser(args.key)
 			}
 		}
 	}
