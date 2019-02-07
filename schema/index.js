@@ -18,7 +18,7 @@ const RootQueryType = new GraphQLObjectType({
 			},
 			resolve: (obj, args, ctx) => {
 				// read user info from database
-				return pgdb(ctx.pgPool).getUser(args.key)
+				return pgdb(ctx.pgPool, args.key)
 			}
 		}
 	}

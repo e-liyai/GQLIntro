@@ -1,5 +1,8 @@
 module.exports = {
 	development: {
-		database: 'contests'
+		host: process.env.HOST,
+		port: process.env.DB_PORT,
+  		user: process.env.DB_USER,
+		database: process.env.DATABASE,
 	}
 }

@@ -1,8 +1,9 @@
 const graphqlHTTP = require('express-graphql')
 const ncSchema = require('../schema')
-const pg = require('pg')
+const { Pool } = require('pg')
+const { nodeEnv } = require('../lib/util')
 const pgConfig = require('../config/pg')[nodeEnv]
-const pgPool = new pg.Pool(pgConfig)
+const pgPool = new Pool(pgConfig)
 
 const graphqlRoute = graphqlHTTP({
 	schema: ncSchema,
