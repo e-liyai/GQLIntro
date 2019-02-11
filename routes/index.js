@@ -3,8 +3,7 @@ const ncSchema = require('../schema')
 
 const graphqlRoute = graphqlHTTP({
 	schema: ncSchema,
-	graphiql: true,
-	context: { pgPool }
+	graphiql: true
 })
 
 module.exports = graphqlRoute
