@@ -6,16 +6,16 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		createdAt: {
 			type: 'TIMESTAMP',
-	        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+	        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
 	        allowNull: false
 		},
 		createdBy: {
-              type: Sequelize.INTEGER,
+              type: DataTypes.INTEGER,
               references: 'Users',
               referencesKey: 'id'
         },
 		nameId: {
-              type: Sequelize.INTEGER,
+              type: DataTypes.INTEGER,
               references: 'Users',
               referencesKey: 'id'
         }

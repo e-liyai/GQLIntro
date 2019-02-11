@@ -14,17 +14,17 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: true
 		},
 		states: {
-			type:   Sequelize.ENUM,
+			type:   DataTypes.ENUM,
 		    values: ['draft', 'published', 'archived'],
 		    defaultValue: 'draft'
 		},
 		createdAt: {
 			type: 'TIMESTAMP',
-	        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+	        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
 	        allowNull: false
 		},
 		updatedBy: {
-              type: Sequelize.INTEGER,
+              type: DataTypes.INTEGER,
               references: 'Users',
               referencesKey: 'id'
         }
