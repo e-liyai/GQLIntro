@@ -25,7 +25,8 @@
     "express-graphql": "^0.7.1",
     "graphql": "^14.1.1",
     "mongodb": "^2.1.18",
-    "pg": "^7.8.0"
+    "pg": "^7.8.0",
+    "sequelize": "^4.42.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
