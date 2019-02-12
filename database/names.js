@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
 	const Names = sequelize.define('Names', {
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
 		label: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -23,14 +29,18 @@ module.exports = (sequelize, DataTypes) => {
 	        allowNull: false
 		},
 		updatedBy: {
-              type: DataTypes.INTEGER,
-              references: 'Users',
-              referencesKey: 'id'
+            type: DataTypes.INTEGER,
+			references: {
+		        model: 'Users',
+		        key: 'id'
+		    }
         },
 		contestId: {
-              type: DataTypes.INTEGER,
-              references: 'Contests',
-              referencesKey: 'id'
+			type: DataTypes.INTEGER,
+			references: {
+		        model: 'Contests',
+		        key: 'id'
+		    }
         }
 	})
 
@@ -41,6 +51,14 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 			}
 		})
+
+		Names.belongsTo(models.Users, {
+			onDelete: 'CASCADE',
+			foreignKey: {
+				allowNull: false,
+			}
+		})
+		Names.hasOne(models.Votes)
 	}
 
 	return Names

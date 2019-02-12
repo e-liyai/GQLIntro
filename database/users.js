@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
 	const Users = sequelize.define('Users', {
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
 		firstName: {
 			type: DataTypes.STRING,
 			allowNull: false
@@ -35,6 +41,12 @@ module.exports = (sequelize, DataTypes) => {
 			}
 		}
 	})
+
+	Users.associate = (models) => {
+		Users.hasMany(models.Contests)
+		Users.hasMany(models.Names)
+		Users.hasOne(models.Votes)
+	}
 
 	return Users
 }

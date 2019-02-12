@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
 	const Votes = sequelize.define('Votes', {
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER
+		},
 		up: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false
@@ -15,19 +21,17 @@ module.exports = (sequelize, DataTypes) => {
               referencesKey: 'id'
         },
 		nameId: {
-              type: DataTypes.INTEGER,
-              references: 'Users',
-              referencesKey: 'id'
+			type: DataTypes.INTEGER,
+		    references: {
+		        model: 'Users',
+		        key: 'id'
+		    }
         }
 	})
 
 	Votes.associate = (models) => {
-		Votes.belongsTo(models.Users, {
-			onDelete: 'CASCADE',
-			foreignKey: {
-				allowNull: false,
-			}
-		})
+		Votes.hasOne(models.Users)
+		Votes.hasOne(models.Names)
 	}
 
 	return Votes
