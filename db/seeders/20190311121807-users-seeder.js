@@ -7,13 +7,14 @@ module.exports = {
           email: 'samer@agilelabs.com',
           first_name: 'John',
           last_name: 'Doe',
-          api_key: 4242
+          apiKey: 4242
         },
         {
           email: 'creative@mind.com',
           first_name: 'Creative',
           last_name: 'Mind',
-          api_key: 0000
+          age: 43,
+          apiKey: 0000
         }
       ], {});
 
@@ -26,22 +27,22 @@ module.exports = {
           code: 'free-programming-books-site',
           title: 'Free Programming Books Site',
           description: 'A list of free online programming books, categorized by languages topics',
-          status: 'draft',
-          created_by: users[0].id
+          states: 'draft',
+          updatedBy: users[0].id
         },
         {
           code: 'visualize-most-popular-tweets',
           title: 'Visualize Most Popular Tweets',
           description: 'A site to constantly visualize the most popular tweets in your stream',
-          status: 'published',
-          created_by: users[0].id
+          states: 'published',
+          updatedBy: users[0].id
         },
         {
           code: 'entrepreneurs-looknig-for-partnership',
           title: 'Interview Entrepreneurs Looking For Partnership',
           description: null,
-          status: 'archived',
-          created_by: users[1].id
+          states: 'archived',
+          updatedBy: users[1].id
         }
       ], {});
 
