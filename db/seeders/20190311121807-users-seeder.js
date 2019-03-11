@@ -21,7 +21,7 @@ module.exports = {
         `SELECT id from Users;`
       );
 
-      queryInterface.bulkInsert('Contests', [
+      await queryInterface.bulkInsert('Contests', [
         {
           code: 'free-programming-books-site',
           title: 'Free Programming Books Site',
@@ -46,34 +46,71 @@ module.exports = {
       ], {});
 
 
-      queryInterface.bulkInsert('Names', [
+      await queryInterface.bulkInsert('Names', [
         {
-          contest_id: 'RootLib',
+          contestId: 'RootLib',
           label: 'rootlib',
           normalized_label: 'The Root Library',
           description: null,
           created_by: users[1].id
         },
         {
-          contest_id: 'TheFreeList',
+          contestId: 'TheFreeList',
           label: 'thefreelist',
           normalized_label: 'The Free List',
           description: null,
           created_by: users[1].id
         },
         {
-          contest_id: 'PopTweet',
+          contestId: 'PopTweet',
           label: 'popTweet',
           normalized_label: 'Pop Tweet',
           description: null,
           created_by: users[1].id
         },
         {
-          contest_id: 'TwitterScope',
+          contestId: 'TwitterScope',
           label: 'twitterscope',
           normalized_label: 'Twitter Scope',
           description: null,
           created_by: users[1].id
+        }
+      ], {});
+
+      const names = await queryInterface.sequelize.query(
+        `SELECT id from Names;`
+      );
+
+      return await queryInterface.bulkInsert('Votes', [
+        {
+          nameId: names[0].id,
+          up: true,
+          createdBy: users[0].id
+        },
+        {
+          nameId: names[1].id,
+          up: true,
+          createdBy: users[0].id
+        },
+        {
+          nameId: names[2].id,
+          up: false,
+          createdBy: users[1].id
+        },
+        {
+          nameId: names[3].id,
+          up: true,
+          createdBy: users[1].id
+        },
+        {
+          nameId: names[2].id,
+          up: true,
+          createdBy: users[1].id
+        },
+        {
+          nameId: names[0].id,
+          up: true,
+          createdBy: users[1].id
         }
       ], {});
   },
