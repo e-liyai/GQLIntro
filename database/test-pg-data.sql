@@ -1,9 +1,9 @@
-drop table if exists votes;
-drop table if exists names;
-drop table if exists contests;
-drop table if exists users;
+drop table if exists Votes;
+drop table if exists Names;
+drop table if exists Contests;
+drop table if exists Users;
 
-create table users (
+create table Users (
 	id serial primary key,
 	email varchar(128) not null,
 	first_name varchar(128),
@@ -12,7 +12,7 @@ create table users (
 	created_at timestamp not null default current_timestamp
 );
 
-create table contests (
+create table Contests (
 	id serial primary key,
 	code varchar(128) not null unique,
 	title varchar(128),
@@ -22,7 +22,7 @@ create table contests (
 	created_by integer references users not null
 );
 
-create table names (
+create table Names (
 	id serial primary key,
 	contest_id integer references contests not null,
 	label varchar(255) not null,
@@ -32,7 +32,7 @@ create table names (
 	created_by integer references users not null
 );
 
-create table votes (
+create table Votes (
 	id serial primary key,
 	name_id integer references names not null,
 	up boolean not null,

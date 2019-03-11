@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
 	Users.associate = (models) => {
 		Users.hasMany(models.Contests)
 		Users.hasMany(models.Names)
-		Users.hasOne(models.Votes)
+		Users.hasMany(models.Votes)
 	}
 
 	return Users

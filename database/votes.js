@@ -16,22 +16,29 @@ module.exports = (sequelize, DataTypes) => {
 	        allowNull: false
 		},
 		createdBy: {
-              type: DataTypes.INTEGER,
-              references: 'Users',
-              referencesKey: 'id'
+            type: DataTypes.INTEGER,
+            references: {
+		        model: 'Users',
+		        key: 'id'
+		    }
         },
 		nameId: {
 			type: DataTypes.INTEGER,
 		    references: {
-		        model: 'Users',
+		        model: 'Names',
 		        key: 'id'
 		    }
         }
+	}, {
+	    indexes: [{
+	            unique: true,
+	            fields: ['createdBy', 'nameId']
+	    }]
 	})
 
 	Votes.associate = (models) => {
-		Votes.hasOne(models.Users)
-		Votes.hasOne(models.Names)
+		Votes.belongsTo(models.Users)
+		Votes.belongsTo(models.Names)
 	}
 
 	return Votes

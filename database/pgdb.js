@@ -1,6 +1,6 @@
 module.exports = async (pgPool, apiKey)=> {
 	// await pgPool.connect()
-	// const user = client.query(`SELECT * FROM users WHERE api_key = $1`, [apiKey])
+	// const user = client.query(`SELECT * FROM Users WHERE api_key = $1`, [apiKey])
 	// console.log('=============== ', user)
 	// client.release()
 	// return user.row[0]

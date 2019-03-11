@@ -6,7 +6,7 @@ const mongoConfig = require('../config/mongo')[nodeEnv];
 MongoClient.connect(mongoConfig.url, (err, db) => {
   assert.equal(null, err);
 
-  db.collection('users').insertMany([
+  db.collection('Users').insertMany([
     {
       userId: 1,
       contestsCount: 3,

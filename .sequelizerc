@@ -1,7 +1,7 @@
 let path = require('path');
 
 module.exports = {
-  'config': path.resolve(__dirname, 'config', pg.js'),
+  'config': path.resolve(__dirname, 'config', 'pg.js'),
   'migrations-path': path.resolve(__dirname, 'db', 'migration'),
   'models-path': path.resolve(__dirname, 'models'),
   'seeders-path' : path.resolve(__dirname, 'db', 'seeders')
