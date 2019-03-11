@@ -45,35 +45,39 @@ module.exports = {
         }
       ], {});
 
+      const contests = await queryInterface.sequelize.query(
+        `SELECT id from Contests;`
+      );
+
 
       await queryInterface.bulkInsert('Names', [
         {
-          contestId: 'RootLib',
-          label: 'rootlib',
-          normalized_label: 'The Root Library',
-          description: null,
-          created_by: users[1].id
+          contestId: contests[1].id,
+          label: 'Rootlib',
+          normalizedLabel: 'rootlib',
+          description: 'The Root Library'',
+          updatedBy: users[1].id
         },
         {
-          contestId: 'TheFreeList',
-          label: 'thefreelist',
-          normalized_label: 'The Free List',
-          description: null,
-          created_by: users[1].id
+          contestId: contests[0].id,
+          label: 'TheFreeList',
+          normalizedLabel: 'thefreelist',
+          description: 'The Free List',
+          updatedBy: users[1].id
         },
         {
-          contestId: 'PopTweet',
-          label: 'popTweet',
-          normalized_label: 'Pop Tweet',
-          description: null,
-          created_by: users[1].id
+          contestId: contests[2].id,
+          label: 'PopTweet',
+          normalizedLabel: 'popTweet',
+          description: 'Pop Tweet',
+          updatedBy: users[1].id
         },
         {
-          contestId: 'TwitterScope',
-          label: 'twitterscope',
-          normalized_label: 'Twitter Scope',
+          contestId: contests[2].id,
+          label: 'TwitterScope',
+          normalizedLabel: 'twitterScope',
           description: null,
-          created_by: users[1].id
+          updatedBy: users[1].id
         }
       ], {});
 
