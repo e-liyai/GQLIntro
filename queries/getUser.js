@@ -1,7 +1,6 @@
 module.exports = async (db, userId) => {
   try {
-    const result = await db.Users.findById(userId)
-    return result
+    return await db.Users.findById(userId)
   } catch (err) {
     console.log(err)
   }

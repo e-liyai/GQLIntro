@@ -5,7 +5,7 @@ const {
 	GraphQLNonNull,
 } = require('graphql')
 const MeType = require('./types/me')
-const getUser = require('../queries/getUser')
+const { getUserByAPIKey } = require('../queries')
 
 const RootQueryType = new GraphQLObjectType({
 	name: 'RootQueryType',
@@ -16,9 +16,9 @@ const RootQueryType = new GraphQLObjectType({
 			args: {
 				key: { type: new GraphQLNonNull(GraphQLString) }
 			},
-			resolve: (obj, args, ctx) => {
+			resolve: async (obj, args, ctx) => {
 				// read user info from database
-				return getUser(ctx.database, args.key)
+				return await getUserByAPIKey(ctx.database, args.key)
 			}
 		}
 	}
