@@ -19,9 +19,11 @@ module.exports = {
         }
       ], {});
 
-      const users = await queryInterface.sequelize.query(
+      let users = await queryInterface.sequelize.query(
         `SELECT id from "Users";`
       );
+
+      users = users[0]
 
       await queryInterface.bulkInsert('Contests', [
         {
@@ -97,14 +99,14 @@ module.exports = {
           createdBy: users[0].id
         },
         {
-          nameId: names[1].id,
+          nameId: names[2].id,
           up: true,
           createdBy: users[0].id
         },
         {
-          nameId: names[2].id,
-          up: false,
-          createdBy: users[1].id
+          nameId: names[1].id,
+          up: true,
+          createdBy: users[0].id
         },
         {
           nameId: names[3].id,

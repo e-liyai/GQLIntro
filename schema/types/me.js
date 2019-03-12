@@ -5,7 +5,8 @@ const {
 	GraphQLNonNull,
 	GraphQLList,
 } = require('graphql')
-const ContestType = require('./contests')
+const ContestType = require('./contest')
+const { getContests } = require('../../queries')
 
 module.exports = new GraphQLObjectType({
 	name: 'MeType',
@@ -15,8 +16,8 @@ module.exports = new GraphQLObjectType({
 		email: { type: new GraphQLNonNull(GraphQLString) },
 		contests: {
 			type: new GraphQLList(ContestType),
-			resolve() {
-				
+			resolve: async (obj, args, ctx) => {
+				return await getContests(ctx.database, obj)
 			}
 		}
 	}
