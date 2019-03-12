@@ -1,25 +1,26 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
+
       await queryInterface.bulkInsert('Users', [
         {
           email: 'samer@agilelabs.com',
-          first_name: 'John',
-          last_name: 'Doe',
+          firstName: 'John',
+          lastName: 'Doe',
           apiKey: 4242
         },
         {
           email: 'creative@mind.com',
-          first_name: 'Creative',
-          last_name: 'Mind',
+          firstName: 'Creative',
+          lastName: 'Mind',
           age: 43,
-          apiKey: 0000
+          apiKey: 1212
         }
       ], {});
 
       const users = await queryInterface.sequelize.query(
-        `SELECT id from Users;`
+        `SELECT id from "Users";`
       );
 
       await queryInterface.bulkInsert('Contests', [
@@ -46,17 +47,18 @@ module.exports = {
         }
       ], {});
 
-      const contests = await queryInterface.sequelize.query(
-        `SELECT id from Contests;`
+      let contests = await queryInterface.sequelize.query(
+        `SELECT id from "Contests";`
       );
 
+      contests = contests[0]
 
       await queryInterface.bulkInsert('Names', [
         {
           contestId: contests[1].id,
           label: 'Rootlib',
           normalizedLabel: 'rootlib',
-          description: 'The Root Library'',
+          description: 'The Root Library',
           updatedBy: users[1].id
         },
         {
@@ -82,9 +84,11 @@ module.exports = {
         }
       ], {});
 
-      const names = await queryInterface.sequelize.query(
-        `SELECT id from Names;`
+      let names = await queryInterface.sequelize.query(
+        `SELECT id from "Names";`
       );
+
+      names = names[0]
 
       return await queryInterface.bulkInsert('Votes', [
         {
@@ -120,13 +124,10 @@ module.exports = {
       ], {});
   },
 
-  down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Votes', null, {})
+    await queryInterface.bulkDelete('Names', null, {})
+    await queryInterface.bulkDelete('Contests', null, {})
+    await queryInterface.bulkDelete('Users', null, {})
   }
 };
